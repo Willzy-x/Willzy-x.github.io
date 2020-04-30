@@ -1,10 +1,10 @@
 # Site settings
 title: HYC Blog
 SEOTitle: Yucheng的博客 | HYC Blog
-header-img: img/post-bg-desk.jpg
-email: yc6820@outlook.com.com
+header-img: img/header.jpg
+email: yc6820@outlook.com
 description: "Every failure is leading towards success."
-keyword: "BY, BY Blog, 柏荧的博客, qiubaiying, 邱柏荧, iOS, Apple, iPhone"
+keyword: "HYC, BY Blog, Yucheng的博客, Huyucheng, HYC, Java, Apple, iPhone"
 url: "http://Willzy-x.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository
@@ -12,7 +12,7 @@ github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Goals determine what you going to be!"
-sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
@@ -20,7 +20,7 @@ sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's us
 RSS: false
 # weibo_username:     qiubaiying
 zhihu_username:     xxx
-github_username:    Wiilzy-x
+github_username:    Willzy-x
 facebook_username:  xxx
 jianshu_username:   xxx
 #twitter_username:   qiubaiying
