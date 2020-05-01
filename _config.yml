@@ -4,10 +4,10 @@ SEOTitle: Yucheng的博客 | HYC Blog
 header-img: img/header.jpg
 email: yc6820@outlook.com
 description: "Every failure is leading towards success."
-keyword: "HYC, BY Blog, Yucheng的博客, Huyucheng, HYC, Java, Apple, iPhone"
+keyword: "HYC, Yucheng的博客, Huyucheng, HYC, Java, iPhone"
 url: "http://Willzy-x.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository
+github_repo: "https://github.com/Willzy-x/Willzy-x.github.io.git" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
@@ -19,9 +19,9 @@ sidebar-avatar: /img/avatar.png      # use absolute URL, seeing it's used in bot
 # SNS settings
 RSS: false
 # weibo_username:     qiubaiying
-zhihu_username:     xxx
+zhihu_username:     花椰菜
 github_username:    Willzy-x
-facebook_username:  xxx
+facebook_username:  Winter Hu
 jianshu_username:   xxx
 #twitter_username:   qiubaiying
 
