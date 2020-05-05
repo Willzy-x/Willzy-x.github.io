@@ -194,7 +194,7 @@ tags:
 
 - http://ychu.top/index.html 调用 http://ychu.top/servers.php 是非跨域的。
 - http://ychu.top/index.html 调用 https://ychu.top/servers.php 是跨域的，因为协议不同
-- http://ychu.top:8080/ 调用 http://ychu:8081/index.html 是跨域的，因为端口不同。（我碰到的就是这种情况）
+- http://ychu.top:8080/ 调用 http://ychu.top:8081/index.html 是跨域的，因为端口不同。（我碰到的就是这种情况）
 - 注意：localhost 和 127.0.0.1 虽然都指向本机，但是也属于跨域。
 
 ### 2.2 `MultipartFile`类
