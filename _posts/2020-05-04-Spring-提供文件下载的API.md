@@ -83,7 +83,7 @@ tags:
 - `Enumeration<String> getAttributeNames()`
   - 获取request对象的所有属性名，返回的是一个`Enumeration`，例如：`Enumeration attrNames = req.getAttributeNames();`
 
-`HttpServletResponse`它们中封装了向客户端发送数据、发送响应头，发送响应状态码的方法。常用的使用场景就是使用OutputStream流向客户端浏览器输出中文数据。在服务器端，数据是以哪个码表输出的，那么就要控制客户端浏览器以相应的码表打开。使用OutputStream流向客户端浏览器输出中文，以UTF-8的编码进行输出，此时就要控制客户端浏览器以UTF-8的编码打开，否则显示的时候就会出现中文乱码。那么在服务器端如何控制客户端浏览器以以UTF-8的编码显示数据呢？可以通过设置响应头控制浏览器的行为，例如：`response.setHeader("content-type", "text/html;charset=UTF-8");`通过设置响应头控制浏览器以UTF-8的编码显示数据。
+`HttpServletResponse`中封装了向客户端发送数据、发送响应头，发送响应状态码的方法。常用的使用场景就是使用OutputStream流向客户端浏览器输出中文数据。在服务器端，数据是以哪个码表输出的，那么就要控制客户端浏览器以相应的码表打开。使用OutputStream流向客户端浏览器输出中文，以UTF-8的编码进行输出，此时就要控制客户端浏览器以UTF-8的编码打开，否则显示的时候就会出现中文乱码。那么在服务器端如何控制客户端浏览器以以UTF-8的编码显示数据呢？可以通过设置响应头控制浏览器的行为，例如：`response.setHeader("content-type", "text/html;charset=UTF-8");`通过设置响应头控制浏览器以UTF-8的编码显示数据。
 
 ``` java
     /**
