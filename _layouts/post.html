@@ -5,7 +5,7 @@ layout: default
 <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-<script>
+{% comment %} <script>
 MathJax = {
   tex2jax: {
     inlineMath: [['$', '$'], ['\\(', '\\)']],
@@ -15,10 +15,22 @@ MathJax = {
     fontCache: 'global'
   }
 };
-</script>
-
+</script> {% endcomment %}
+{% comment %} 
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script> {% endcomment %}
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\(','\)']],
+        displayMath: [['$$','$$'], ["\\[","\\]"]]
+    }
+    });
 </script>
 
 <!-- Post Header -->
