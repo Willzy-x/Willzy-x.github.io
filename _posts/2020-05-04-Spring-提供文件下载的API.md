@@ -135,8 +135,8 @@ tags:
 
 `copy`方法的使用:
 
-- `copy`能拷贝`Integer.MAX_VALUE`的字节数据，即$ 2^{31}-1 $。 
-- 如果是很大的数据，那么可以选择用`copyLarge`方法，适合拷贝较大的数据流，比如2G以上 
+- `copy`能拷贝`Integer.MAX_VALUE`的字节数据，即$ 2^{31}-1 $。
+- 如果是很大的数据，那么可以选择用`copyLarge`方法，适合拷贝较大的数据流，比如2G以上
 
 在这里我们主要做的就是将从本地读取文件的`InputStream`拷贝到响应报文的`OutputStream`中去。
 
