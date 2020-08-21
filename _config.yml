@@ -99,7 +99,7 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "简书·BY",
+        title: "简书",
         href: "http://www.jianshu.com/u/e71990ada2fd"
     },{
         title: "Apple",
@@ -107,5 +107,8 @@ friends: [
     },{
         title: "Apple Developer",
         href: "https://developer.apple.com/"
+    }, {
+        title: "Android Developer",
+        href: "https://developer.android.com/"
     }
 ]
