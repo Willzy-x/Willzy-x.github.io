@@ -4,7 +4,7 @@ title:      Kotlin学习
 subtitle:   Kotlin笔记
 date:       2020-08-08
 author:     HYC
-header-img: img/post-2020-05-05-header.jpg
+header-img: img/kotlin-1-4.png
 catalog: true
 tags:
     - Android
@@ -30,9 +30,9 @@ hello.kt HelloKt.class
 ``` shell
 > kotlin HelloKt
 Hello, Kotlin!
-
-Kotlin does not generate Java source code —it's not a transpiler. It generates bytecodes that can be interpreted by the JVM.
 ```
+> Kotlin does not generate Java source code —**it's not a transpiler.** It generates bytecodes that can be interpreted by the JVM.
+
 也可以将kotlin代码生成为可以被Java命令执行的JAR文件：
 ``` shell
 > kotlinc-jvm hello.kt -include-runtime -d hello.jar
@@ -84,7 +84,7 @@ class Person(val first: String,
 val jkRowling = Person("Joanne", null, "Rowling")
 val northWest = Person("North", null, "West")
 ```
-如果middle不是空的时候，Kotlin会对它做一个小的转型，将它看作是一个String而不是String?类型。
+如果`middle`不是空的时候，Kotlin会对它做一个小的转型，将它看作是一个`String`而不是`String?`类型。
 ``` kotlin
 val p = Person(first = "North", middle = null, last = "West")
 
@@ -206,14 +206,14 @@ object Singleton {
     }    
 }
 ```
-3.4 Kotlin中的可见修饰符
+#### 3.4 Kotlin中的可见修饰符
 - `private`：和Java中一样，表示只对当前类可见。
 - `public`：和Java中一样，表示对所有类可见，但是在Kotlin中，public是默认的可见属性。
 - `protected`：在Kotlin中表示只对当前类和子类可见，而java中表示对当前类、子类和同一包路径下的类都可见。
 - `internal`：只对同一模块中的类可见。
 
 #### 3.5 Kotlin中的Getter和Setter
-在Kotlin类中给属性添加get和set函数，kotlin中一个属性的定义语法是这样的：
+在Kotlin类中给属性添加`get`和`set`函数，kotlin中一个属性的定义语法是这样的：
 ``` kotlin
 var <propertyName> [: <PropertyType>] [= <property_initializer>]
     [<getter>]
@@ -291,104 +291,81 @@ fun processString(str: String) =
 在Java中创建一个静态方法就只需要加上`static`关键字就好了，但是在Kotlin中却极度弱化了静态方法这个概念，为什么Kotlin要这样设计呢？因为Kotlin提供了比静态方法更好用的语法特性，就是单例类。
 
 如果是工具类的话，在Kotlin中就可以使用单例类的方式来实现：
+``` kotlin
 object Util {
     fun doAction() {
         println("do action")
     }
 }
-
-虽然这里的doAction并不是静态的方法，但是我们也可以使用Util.doAction()调用。但是如果我们只希望类中的一个方法变成静态方法，那么应该怎么办呢？这个时候我们就可以使用companion object了：
+```
+虽然这里的`doAction`并不是静态的方法，但是我们也可以使用`Util`.`doAction()`调用。但是如果我们只希望类中的一个方法变成静态方法，那么应该怎么办呢？这个时候我们就可以使用`companion object`了：
+``` kotlin
 companion object {
     fun doAction() {
         println("do action")
     }
 }
-
-其实上面定义的也不是一个静态的方法，companion object实际上会在Util类的内部创建一个伴生类。虽然kotlin没有直接定义静态方法的关键字，但是提供了一些语法特性来支持类似于静态方法调用的写法。如果我们给单例类或companion object中的方法加上@JvmStatic注解的话，Kotlin就会将这些方法编译成真正的静态方法：
+```
+其实上面定义的也不是一个静态的方法，`companion object`实际上会在`Util`类的内部创建一个伴生类。虽然kotlin没有直接定义静态方法的关键字，但是提供了一些语法特性来支持类似于静态方法调用的写法。如果我们给单例类或`companion object`中的方法加上`@JvmStatic`注解的话，Kotlin就会将这些方法编译成真正的静态方法：
+``` kotlin
 companion object {
     @JvmStatic
     fun doAction() {
         println("do action")
     }
 }
-
-再来看顶层方法，指的是那些没有定义在任何类中的方法，比如main()方法。Kotlin会将所有的顶层方法全部编译为静态方法。因此只要你定义了一个顶层方法，那么它就一定是静态方法：
+```
+再来看顶层方法，指的是那些没有定义在任何类中的方法，比如`main()`方法。Kotlin会将所有的顶层方法全部编译为静态方法。因此只要你定义了一个顶层方法，那么它就一定是静态方法：
+``` kotlin
 fun doSomething() {
     println("do something")
 }
+```
+Kotlin会将放在一个类中，方便Java调用，比如类叫`Helper`，那么Java中就可以用`HelperKT`调用。
 
-Kotlin会将放在一个类中，方便Java调用，比如类叫Helper，那么Java中就可以用HelperKT调用。
-
-3.8 Kotlin 类架构
-3.8.1 Any类型
+#### 3.8 Kotlin 类架构
+##### 3.8.1 Any类型
 Any其实等同于Java中的Object，而Kotlin中原始类型和用户定义的类型之间其实没有什么明显的区别。
 - 如果声明了一个类但却不指定它继承自哪个类的话，那么它就会是Any类的一个直接子类：
+
+``` kotlin
 class Fruit(val ripeness: Double)
+```
+- 如果声明类这个类的父类的话，那么它就是它的父类的直接子类，而最后的祖先类会是`Any`。
+- 如果你的类实现了一个或者多个接口，它就会有多个父类型，而`Any`也会是它的最终祖先类型。
 
-- 如果声明类这个类的父类的话，那么它就是它的父类的直接子类，而最后的祖先类会是Any。
-- 如果你的类实现了一个或者多个接口，它就会有多个父类型，而Any也会是它的最终祖先类型。
-
-3.8.2 可空类型
-和Java不同的是，Kotlin将“非空（Non-null）”和“可空（Nullable）”类型区分开。刚刚我们谈到的都是非空类型，而且Kotlin不允许将null作为那些类型的值：
+##### 3.8.2 可空类型
+和Java不同的是，Kotlin将“非空（Non-null）”和“可空（Nullable）”类型区分开。刚刚我们谈到的都是非空类型，而且Kotlin不允许将`null`作为那些类型的值：
+``` kotlin
 var s: String = null
 // Error: Null can not be a value of a non-null type String
 
 var s: String? = null
 // Yes
+```
+这些可空类型的类的架构其实和那些非空类型的架构其实一样，举个🌰 ：`String`是`Any`的直接子类，`String?`是`Any?`的直接子类。`Banana`是`Fruit`的子类，而`Banana?`是`Fruit?`的子类。
 
-这些可空类型的类的架构其实和那些非空类型的架构其实一样，举个🌰 ：String是Any的直接子类，String?是Any?的直接子类。Banana是Fruit的子类，而Banana?是Fruit?的子类。
+除此之外，一个非空类型也是它的可空类型的子类型，比如`String`是`String?`的子类。
 
-除此之外，一个非空类型也是它的可空类型的子类型，比如String是String?的子类。
+##### 3.8.3 Unit类型
+因为Kotlin是一个面向表达式的语言，Kotlin没有`void`类型的函数，所有的函数都会有返回值，那些类似`void`函数的Kotlin函数都会返回一个`Unit`类型的值。`Unit`中只有一个值，也叫`Unit`。
 
-3.8.3 Unit类型
-因为Kotlin是一个面向表达式的语言，Kotlin没有void类型的函数，所有的函数都会有返回值，那些类似void函数的Kotlin函数都会返回一个Unit类型的值。Unit中只有一个值，也叫Unit。
+大部分情况下我们不需要显式地声明一个返回`Unit`类型的函数的返回类型；如果你写了一个没有声明返回类型的函数，那么编译器就会自动地将它作为一个`Unit`函数对待。
 
-大部分情况下我们不需要显式地声明一个返回Unit类型的函数的返回类型；如果你写了一个没有声明返回类型的函数，那么编译器就会自动地将它作为一个Unit函数对待。
+`Unit`类型也是`Any`子类，`Unit？`是`Any？`的子类，`Unit`也是`Unit？`的子类。
 
-Unit类型也是Any子类，Unit？是Any？的子类，Unit也是Unit？的子类。
+`Unit?`是一个比较特别的例子，它只有两个成员：一个`Unit`值和一个`null`。
 
-Unit?是一个比较特别的例子，它只有两个成员：一个Unit值和一个null。
+`Unit`类型的出现其实是让整个类型系统一致对待所有的函数。 
 
-Unit类型的出现其实是让整个类型系统一致对待所有的函数。 
-
-3.8.4 Nothing类型
-在Kotlin类架构的最底部是Nothing类型，它并没有一个实例，一个返回Nothing类型的表达式不会产生任何值。也就是说在一个返回Nothing表达式之后的代码是unreachable。因此返回Nothing的函数一般是用于捕获异常。
+##### 3.8.4 `Nothing`类型
+在Kotlin类架构的最底部是`Nothing`类型，它并没有一个实例，一个返回`Nothing`类型的表达式不会产生任何值。也就是说在一个返回`Nothing`表达式之后的代码是unreachable。因此返回`Nothing`的函数一般是用于捕获异常。
 
 
-4. Kotlin特性
-4.1 Kotlin的协程
-4.1.1 runBlocking
-runBlocking函数会创建一个协程的作用域，它可以保证在协程作用域内的所有代码和子协程没有全部执行玩之前一直阻塞当前线程。需要注意的是，runBlocking函数通常只应该在测试环境下使用，在正式的环境中使用容易产生一些性能上的问题：
-fun main() {
-    runBlocking {
-        println("codes run in coroutine scope")
-        delay(1500)
-        println("codes run in coroutine scope finished")
-    }
-    Thread.sleep(1000)
-}
-
-那么如何才能创建多个协程呢？很简单，使用launch函数就行了：
-fun main() {
-    runBlocking {
-        launch {
-            println("launch1")
-            delay(1000)
-            println("launch1 finished")
-        }
-
-        launch {
-            println("launch2")
-            delay(1000)
-            println("launch2 finished")
-        }
-    }
-    Thread.sleep(1000)
-}
-
-4.2 密封类
+### 4. Kotlin特性
+#### 4.1 密封类
 密封类用来表示受限的类继承结构：当一个值为有限几种的类型、而不能有任何其他类型时。在某种意义上，他们是枚举类的扩展：枚举类型的值集合也是受限的，但每个枚举常量只存在一个实例，而密封类的一个子类可以有可包含状态的多个实例。
-
+``` kotlin
 fun eval(expr: Expr): Int =
         when (expr) {
             is Num -> expr.value
@@ -398,10 +375,11 @@ fun eval(expr: Expr): Int =
 sealed class Expr
 class Num(val value: Int) : Expr()
 class Sum(val left: Expr, val right: Expr) : Expr()
+```
+一个密封类是自身抽象的，它不能直接实例化并可以有抽象（`abstract`）成员。密封类不允许有非-`private` 构造函数（其构造函数默认为 `private`）。
 
-一个密封类是自身抽象的，它不能直接实例化并可以有抽象（abstract）成员。密封类不允许有非-private 构造函数（其构造函数默认为 private）。
+#### 4.2 内联函数
 
-4.3 内联函数
-- inline关键字：将函数代码拷贝到调用的地方。如果不使用inline而且当参数是lambda表达式时，多次调用会引起比较大的性能开销，因为要经常生成新的lambda表达式对象。相反，如果是inline，lambda也会被拷贝到调用的地方。
-- noninline关键字：当在一个inline函数中，有多个lambda作为参数时，可以在不想内联的lambda表达式前加上这个声明。
-- crossinline关键字：显示声明inline函数的形参lambda不能有return语句，避免lambda中的return影响外部程序流程。
+- `inline`关键字：将函数代码拷贝到调用的地方。如果不使用`inline`而且当参数是lambda表达式时，多次调用会引起比较大的性能开销，因为要经常生成新的lambda表达式对象。相反，如果是`inline`，lambda也会被拷贝到调用的地方。
+- `noninline`关键字：当在一个`inline`函数中，有多个lambda作为参数时，可以在不想内联的lambda表达式前加上这个声明。
+- `crossinline`关键字：显示声明`inline`函数的形参lambda不能有`return`语句，避免lambda中的`return`影响外部程序流程。
