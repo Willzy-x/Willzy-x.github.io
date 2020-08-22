@@ -33,6 +33,7 @@ Fresco 的 Drawees 设计，带来一些有用的特性：
 - 下载失败之后，点击重现下载
 - 自定义占位图，自定义overlay, 或者进度条
 - 指定用户按压时的overlay
+
 #### 1.2.1 `SimpleDraweeView`的使用
 在layout文件中使用`SimpleDraweeView()`：
 
