@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Android视频播放
+title:      Android 视频播放
 subtitle:   视频播放之ExoPlayer库
 date:       2020-07-29
 author:     HYC
