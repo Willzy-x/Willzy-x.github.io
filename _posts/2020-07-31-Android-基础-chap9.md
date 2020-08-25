@@ -388,13 +388,13 @@ implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 ``` kotlin
 interface FlickrApi {
     /**
-     *  By default, all retrofit web requests return a Call object,
-     *  which represent a single web request that you can execute.
-     *  Executing a Call produces one corresponding web response.
-     *  Specifying Call<String> means that you want the response deserialized
-     *  into a String object instead.
-     *
-     */
+     *  By default, all retrofit web requests return a Call object,  
+     *  which represent a single web request that you can execute.  
+     *  Executing a Call produces one corresponding web response.   
+     *  Specifying Call<String> means that you want the response deserialized  
+     *  into a String object instead.  
+     *  
+     */  
     @GET("/")
     fun fetchContents() : Call<String>
 }
@@ -460,7 +460,8 @@ val flickrHomePageRequest: Call<String> = flickrApi.fetchContents()
 如果我们想要执行这个web请求，我们需要调用它的`enqueue()`方法，并且将除了响应成功和失败的回调函数对象`Callback`作为参数传递给它：
 
 ``` kotlin
-/* To execute the web request represented by the Call object, call the enqueue() function and pass an instance of Callback to handle success and failure situations */
+/* To execute the web request represented by the Call object,   
+call the enqueue() function and pass an instance of Callback to handle success and failure situations */
 flickrHomePageRequest.enqueue(object : Callback<String> {
     override fun onFailure(call: Call<String>, t: Throwable) {
         Log.e(TAG, "Failed to fetch photos ", t )
