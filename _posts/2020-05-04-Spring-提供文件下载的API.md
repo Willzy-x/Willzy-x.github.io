@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Spring学习(1)
+title:      Spring学习
 subtitle:   利用Spring MVC 提供能够进行文件上传下载的REST API
 date:       2020-05-04
 author:     HYC

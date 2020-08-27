@@ -379,6 +379,17 @@ private void parseJSONWithGSON(String jsonData) {
 ```
 
 ### 9.5 Retrofit网络库补充
+- 概念
+  - 是一个基于RESTful的HTTP网络库的封装
+  - 内部网络是由OkHttp实现的
+  - 和OkHttp都是Square公司开发并开源的
+
+- 特点
+  - 比OkHttp的接口更加灵活
+  - 解耦合：接口的定义与使用的解藕；Retrofit和底层网络实现解耦合
+  - 引入大量的注解：包括方法、参数、URL等
+  - 支持同步/异步
+
 首先添加gradle依赖：
 ``` groovy
 implementation 'com.squareup.retrofit2:retrofit:2.5.0'
