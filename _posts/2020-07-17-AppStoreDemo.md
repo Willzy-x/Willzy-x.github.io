@@ -77,6 +77,7 @@ setSupportActionBar(toolbar);
 先实现`Parcelable`接口,还有必须要重写的两个方法：
 - `describeContents()`，一般返回0。
 - `writeToParcel()`，我们需要在这个方法中将App类中的字段一一写出。
+
 ``` java
 @Override
 public int describeContents() {
