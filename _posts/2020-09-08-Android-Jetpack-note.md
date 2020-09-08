@@ -4,7 +4,7 @@ title:      安卓基础知识
 subtitle:   Android Jetpack 笔记
 date:       2020-09-08
 author:     HYC
-header-img: img/android_jetpack.png
+header-img: img/android_jetpack_new.png
 catalog: true
 tags:
     - Android
